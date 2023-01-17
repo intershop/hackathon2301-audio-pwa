@@ -87,6 +87,7 @@
     "@rx-angular/state": "^1.7.0",
     "@sentry/browser": "^7.25.0",
     "@types/webmidi": "^2.0.6",
+    "@types/dom-speech-recognition": "^0.0.1",
     "angular-oauth2-oidc": "^13.0.1",
     "angulartics2": "^12.2.0",
     "bootstrap": "^4.6.2",

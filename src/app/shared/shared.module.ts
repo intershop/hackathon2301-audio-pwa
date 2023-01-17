@@ -140,6 +140,7 @@ import { PromotionDetailsComponent } from './components/promotion/promotion-deta
 import { PromotionRemoveComponent } from './components/promotion/promotion-remove/promotion-remove.component';
 import { ConfirmLeaveModalComponent } from './components/registration/confirm-leave-modal/confirm-leave-modal.component';
 import { SearchBoxComponent } from './components/search/search-box/search-box.component';
+import { SpeechRecognitionComponent } from './components/speech/recognition/speech-recognition.component';
 import { FormlyAddressFormsModule } from './formly-address-forms/formly-address-forms.module';
 import { FormlyModule } from './formly/formly.module';
 import { FormsSharedModule } from './forms/forms.module';
@@ -292,6 +293,7 @@ const exportedComponents = [
   SuccessMessageComponent,
   AudioTextToSpeechComponent,
   AudioMidiComponent,
+  SpeechRecognitionComponent,
 ];
 
 @NgModule({

@@ -1,0 +1,12 @@
+<p>speech-recognition works!</p>
+<button *ngIf="listening$ | async; else mic" (click)="stop()">
+  <mat-icon class="soundwave">Stop</mat-icon>
+</button>
+<ng-template #mic>
+  <button (click)="start()">
+    <mat-icon>Start</mat-icon>
+  </button>
+</ng-template>
+<ng-container *ngIf="transcript$ | async as transcript">
+  <textarea matInput [value]="transcript || ''" placeholder="Speech Input Result" rows="15" disabled="true"></textarea>
+</ng-container>
