@@ -55,6 +55,7 @@ import { ContentPageletComponent } from './cms/components/content-pagelet/conten
 import { ContentSlotComponent } from './cms/components/content-slot/content-slot.component';
 import { ContentViewcontextComponent } from './cms/components/content-viewcontext/content-viewcontext.component';
 import { AddressComponent } from './components/address/address/address.component';
+import { AudioMidiComponent } from './components/audio-midi/audio-midi.component';
 import { AudioTextToSpeechComponent } from './components/audio-text-to-speech/audio-text-to-speech.component';
 import { BasketAddressSummaryComponent } from './components/basket/basket-address-summary/basket-address-summary.component';
 import { BasketApprovalInfoComponent } from './components/basket/basket-approval-info/basket-approval-info.component';
@@ -290,6 +291,7 @@ const exportedComponents = [
   SearchBoxComponent,
   SuccessMessageComponent,
   AudioTextToSpeechComponent,
+  AudioMidiComponent,
 ];
 
 @NgModule({

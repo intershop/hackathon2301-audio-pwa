@@ -2,9 +2,16 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./node_modules/.out-tsc/app",
-    "types": [],
+    "types": [
+      "webmidi"
+    ],
     "module": "ESNext"
   },
-  "files": ["src/main.ts", "src/polyfills.ts"],
-  "include": ["src/typings.d.ts"]
+  "files": [
+    "src/main.ts",
+    "src/polyfills.ts"
+  ],
+  "include": [
+    "src/typings.d.ts"
+  ]
 }

@@ -86,6 +86,7 @@
     "@ngx-translate/core": "^14.0.0",
     "@rx-angular/state": "^1.7.0",
     "@sentry/browser": "^7.25.0",
+    "@types/webmidi": "^2.0.6",
     "angular-oauth2-oidc": "^13.0.1",
     "angulartics2": "^12.2.0",
     "bootstrap": "^4.6.2",
@@ -223,11 +224,29 @@
       "@commitlint/config-conventional"
     ],
     "rules": {
-      "body-leading-blank": [2, "always"],
-      "body-max-line-length": [2, "always", 400],
-      "footer-leading-blank": [2, "always"],
-      "footer-max-line-length": [2, "always", 400],
-      "header-max-length": [2, "always", 200],
+      "body-leading-blank": [
+        2,
+        "always"
+      ],
+      "body-max-line-length": [
+        2,
+        "always",
+        400
+      ],
+      "footer-leading-blank": [
+        2,
+        "always"
+      ],
+      "footer-max-line-length": [
+        2,
+        "always",
+        400
+      ],
+      "header-max-length": [
+        2,
+        "always",
+        200
+      ],
       "type-enum": [
         2,
         "always",
