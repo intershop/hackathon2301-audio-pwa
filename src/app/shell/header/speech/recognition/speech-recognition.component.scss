@@ -1,0 +1,106 @@
+@import 'variables';
+
+.microphone-fix {
+  position: fixed;
+  right: $space-default * 2;
+  bottom: $space-default * 2;
+}
+
+.microphone-text {
+  position: fixed;
+  right: 15px;
+  bottom: 110px;
+  z-index: 100001;
+  width: 300px;
+  max-width: 300px;
+  height: auto;
+  padding: 40px 30px;
+  margin: 0 auto;
+  text-align: center;
+  background: #fff;
+  border: 5px solid #688dc3;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.3) 5px 5px 5px;
+
+  &::after {
+    position: absolute;
+    right: 30px;
+    bottom: -15px;
+    content: '';
+    border-color: transparent #688dc3 #688dc3 transparent;
+    border-style: solid;
+    border-width: 10px;
+    box-shadow: rgb(0 0 0 / 0.3) 5px 2px 5px;
+    transform: rotate(45deg);
+  }
+}
+
+.microphone-badge {
+  position: relative;
+  z-index: 20000;
+  padding: 20px 22px;
+  font-size: 16px;
+  background-color: $CORPORATE-PRIMARY;
+  border: none;
+  box-shadow: rgb(0 0 0 / 0.3) 5px 2px 5px;
+
+  &.pause {
+    padding: 20px 23px;
+  }
+}
+
+.textarea {
+  display: block;
+  // overflow: hidden;
+  font-size: 30px;
+  line-height: 35px;
+  color: #8b8b8b;
+  resize: both;
+
+  &[contenteditable]:empty::before {
+    font-size: 30px;
+    color: #999;
+    white-space: pre;
+    content: 'Try "Search for"...';
+    background: $white;
+  }
+}
+
+.icon-color {
+  color: #fff;
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+.pulse:hover {
+  // animation: none;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 #688dc3;
+  }
+
+  70% {
+    box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+  }
+}
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 #688dc3;
+  }
+
+  70% {
+    box-shadow: 0 0 0 30px rgba(204, 169, 44, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+  }
+}
