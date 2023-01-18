@@ -44,12 +44,16 @@ export class AudioMidiCaptchaComponent implements OnInit {
           console.log('noteOn');
           console.log(note, velocity);
 
-          if (velocity > 0 && velocity < 90) {
+          // removed velocity
+          // if (velocity > 0 && velocity < 90) {
+          if (velocity > 0 && velocity < 200) {
             console.log('too low');
 
             if (document.getElementById(`note${note}`) !== null) {
               const box = document.getElementById(`note${note}`) as HTMLDivElement | null;
-              addClass('success-medium', box);
+              // removed velocity
+              // addClass('success-medium', box);
+              addClass('success-check', box);
             } else {
               const boxWrong = document.getElementById(`note-wrong`) as HTMLDivElement | null;
               addClass('error', boxWrong);
