@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-
 @Component({
   selector: 'ish-audio-midi',
   templateUrl: './audio-midi.component.html',
@@ -7,8 +6,16 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 })
 export class AudioMidiComponent implements OnInit {
 
- 
+  interval: any;
+  
+
+  ngOnDestroy()
+  {
+    clearInterval(this.interval);
+  }
   ngOnInit() {
+    var myMap = new Map<string, number>();
+    var lastSaid = 'My Account';
     if (navigator.requestMIDIAccess) {
       console.log('This browser supports WebMIDI!');
     } else {
@@ -16,7 +23,7 @@ export class AudioMidiComponent implements OnInit {
     }
 
     navigator.requestMIDIAccess().then(onMIDISuccess, onMIDIFailure);
-
+    
     function onMIDISuccess(midiAccess) {
       console.log(midiAccess);
 
@@ -30,66 +37,70 @@ export class AudioMidiComponent implements OnInit {
       console.log('Could not access your MIDI devices.');
     }
 
-    let myMap = new Map<string, number>();
-
     function getMIDIMessage(message) {
-      // console.log(midiMessage);
-
       const command = message.data[0];
       const note = message.data[1];
+      this.note = note;
       const velocity = message.data.length > 2 ? message.data[2] : 0; // a velocity value might not be included with a noteOff command
 
       //---------MY ACCOUNT ----------------
       switch (command) {
         case 144: // noteOn
         {
-          console.log(note);
-          const box = document.getElementById(note) as HTMLDivElement | null;          
+          //console.log(note+myMap.size);
+          const box = document.getElementById(note) as HTMLDivElement | null;
           box?.setAttribute('style', 'background: #d5d5d5'); // none repeat scroll 0 0);
-          myMap.set(note, Date.now());
+          if (myMap.get(note) === undefined)
+          {
+            myMap.set(note, Date.now());
+            if (myMap.size == 1)
+            {
+              this.interval = window.setInterval(()=>checkForButtonInterval() , 100);
+            }
+          }
           break;
         }
-        case 128: 
+        case 128: // noteOff
         {
           const box = document.getElementById(note) as HTMLDivElement | null;
           box?.removeAttribute('style');
-          let noteOnDate = myMap.get(note);
-          let noteOffDate = Date.now();
-          if (noteOffDate-noteOnDate > 2000)
-          {
-            console.log('lange');
-            console.log(box?.firstChild);
-            const link = box?.firstChild as HTMLLinkElement | null;
-            link.click();
-          }
+
           myMap.delete(note);
+          if (myMap.size == 0)
+          {
+            clearInterval(this.interval);
+          }
           break;
         }
       }
       //---------MY ACCOUNT ----------------
-      /*switch (command) {
-        case 144: // noteOn
-          if (velocity > 0) {
-            console.log(note, velocity);
-
+      function checkForButtonInterval()
+      {
+        if (myMap.size === 1) 
+        {
+          myMap.forEach((time: number, note: string) => {
             const box = document.getElementById(note) as HTMLDivElement | null;
-            box?.setAttribute('style', 'background-color: #000');
-          } else {
-            console.log(note);
-
-            const box = document.getElementById(note) as HTMLDivElement | null;
-            box?.setAttribute('style', 'background-color: #00');
-          }
-          break;
-        case 128: // noteOff
-          console.log(note);
-
-          const box = document.getElementById(note) as HTMLDivElement | null;
-          box?.setAttribute('style', 'background-color: #eee');
-
-          break;
-        // we could easily expand this switch statement to cover other types of commands such as controllers or sysex
-      }*/
+            if (Date.now()-time > 500 && Date.now()-time < 580)
+            {
+              const sayNow = box?.firstChild.textContent;
+              console.log(sayNow);
+              if (sayNow !== lastSaid)
+              {
+                speechSynthesis.speak(new SpeechSynthesisUtterance(sayNow));
+                lastSaid=sayNow;
+              }
+              else{
+                console.log('gleich');
+              }
+            }
+            else if (Date.now()-time > 2000)
+            {
+              const link = box?.firstChild as HTMLLinkElement | null;
+              link.click();
+            }
+          });
+        }
+      }
     }
   }
 }

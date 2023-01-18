@@ -66,7 +66,7 @@ export class AccountNavigationComponent implements OnInit, OnChanges {
       localizationKey: 'account.wishlists.link',
       feature: 'wishlists',
       dataTestingId: 'wishlists-link',
-      notRole: ['APP_B2B_CXML_USER', 'APP_B2B_OCI_USER'],
+      //notRole: ['APP_B2B_CXML_USER', 'APP_B2B_OCI_USER'],
     },
     '/account/addresses': {
       id: '62',
