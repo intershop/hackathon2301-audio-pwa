@@ -1,0 +1,102 @@
+@import 'variables';
+
+.captcha-wrapper {
+  margin-bottom: 30px;
+  clear: both;
+
+  .velocity {
+    position: relative;
+
+    .velocity-icon {
+      position: absolute;
+      top: 20px;
+      left: 104px;
+      width: 60px;
+      height: 60px;
+      background: url('/assets/img/angles-down-solid.svg') 0 0 no-repeat;
+    }
+
+    .velocity-text {
+      position: absolute;
+      top: 8px;
+      left: 160px;
+      width: 80px;
+      height: 80px;
+      font-size: 60px;
+    }
+  }
+
+  .captcha-result {
+    position: relative;
+    width: 260px;
+    height: 200px;
+    padding: 30px;
+    font-size: 100px;
+    border: 4px dashed #222;
+
+    .note {
+      position: absolute;
+      top: 30px;
+      left: 50px;
+      z-index: 3;
+      width: 130px;
+      height: 130px;
+      background: url('/assets/img/music-solid.svg') 0 0 no-repeat;
+    }
+
+    #note54 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      width: 252px;
+      height: 192px;
+    }
+
+    #note-wrong {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      width: 252px;
+      height: 192px;
+    }
+
+    .success {
+      background: #5cb85c;
+      animation: fadeinout 1s linear forwards;
+    }
+
+    .success-medium {
+      background: #8b8b8b;
+      animation: fadeinout 0.5s linear forwards;
+    }
+
+    .error {
+      background: #ea1919;
+      animation: fadeinout 0.5s linear forwards;
+    }
+  }
+
+  @keyframes fadeinout {
+    0%,
+    100% {
+      opacity: 0;
+    }
+
+    50% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeinout {
+    0%,
+    100% {
+      opacity: 0;
+    }
+
+    50% {
+      opacity: 1;
+    }
+  }
+}
