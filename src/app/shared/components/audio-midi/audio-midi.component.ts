@@ -6,6 +6,8 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AudioMidiComponent implements OnInit {
+
+ 
   ngOnInit() {
     if (navigator.requestMIDIAccess) {
       console.log('This browser supports WebMIDI!');
@@ -28,6 +30,8 @@ export class AudioMidiComponent implements OnInit {
       console.log('Could not access your MIDI devices.');
     }
 
+    let myMap = new Map<string, number>();
+
     function getMIDIMessage(message) {
       // console.log(midiMessage);
 
@@ -35,7 +39,35 @@ export class AudioMidiComponent implements OnInit {
       const note = message.data[1];
       const velocity = message.data.length > 2 ? message.data[2] : 0; // a velocity value might not be included with a noteOff command
 
+      //---------MY ACCOUNT ----------------
       switch (command) {
+        case 144: // noteOn
+        {
+          console.log(note);
+          const box = document.getElementById(note) as HTMLDivElement | null;          
+          box?.setAttribute('style', 'background: #d5d5d5'); // none repeat scroll 0 0);
+          myMap.set(note, Date.now());
+          break;
+        }
+        case 128: 
+        {
+          const box = document.getElementById(note) as HTMLDivElement | null;
+          box?.removeAttribute('style');
+          let noteOnDate = myMap.get(note);
+          let noteOffDate = Date.now();
+          if (noteOffDate-noteOnDate > 2000)
+          {
+            console.log('lange');
+            console.log(box?.firstChild);
+            const link = box?.firstChild as HTMLLinkElement | null;
+            link.click();
+          }
+          myMap.delete(note);
+          break;
+        }
+      }
+      //---------MY ACCOUNT ----------------
+      /*switch (command) {
         case 144: // noteOn
           if (velocity > 0) {
             console.log(note, velocity);
@@ -57,7 +89,7 @@ export class AudioMidiComponent implements OnInit {
 
           break;
         // we could easily expand this switch statement to cover other types of commands such as controllers or sysex
-      }
+      }*/
     }
   }
 }

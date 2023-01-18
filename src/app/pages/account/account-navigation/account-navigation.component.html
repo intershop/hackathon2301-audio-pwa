@@ -4,7 +4,7 @@
     <ng-container *ngFor="let item of navigationItems | keyvalue: unsorted; let first = first">
       <ng-container *ishIsAuthorizedTo="item.value.permission || 'always'">
         <ng-container *ishHasNotRole="item.value.notRole">
-          <li
+          <li [id]="item.value.id"
             *ngIf="
               (item.value.feature || 'always' | ishFeature) && (item.value.serverSetting || 'always' | ishServerSetting)
             "

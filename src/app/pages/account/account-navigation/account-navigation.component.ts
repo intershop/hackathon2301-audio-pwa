@@ -5,6 +5,7 @@ import { DeviceType } from 'ish-core/models/viewtype/viewtype.types';
 
 interface NavigationItems {
   [link: string]: {
+    id: string;
     localizationKey: string;
     dataTestingId?: string;
     feature?: string;
@@ -29,66 +30,79 @@ export class AccountNavigationComponent implements OnInit, OnChanges {
    * Manages the Account Navigation items.
    */
   navigationItems: NavigationItems = {
-    '/account': { localizationKey: 'account.my_account.link' },
+    '/account': { id: '50', localizationKey: 'account.my_account.link' },
     '/account/requisitions/buyer': {
+      id: '52',
       localizationKey: 'account.requisitions.requisitions',
       serverSetting: 'services.OrderApprovalServiceDefinition.runnable',
       permission: 'APP_B2B_PURCHASE',
       notRole: ['APP_B2B_CXML_USER', 'APP_B2B_OCI_USER'],
     },
     '/account/requisitions/approver': {
+      id: '53',
       localizationKey: 'account.requisitions.approvals',
       serverSetting: 'services.OrderApprovalServiceDefinition.runnable',
       permission: ['APP_B2B_ORDER_APPROVAL', 'APP_B2B_MANAGE_COSTCENTER'],
     },
     '/account/quotes': {
+      id: '55',
       localizationKey: 'account.navigation.quotes.link',
       feature: 'quoting',
       notRole: ['APP_B2B_CXML_USER', 'APP_B2B_OCI_USER'],
     },
     '/account/order-templates': {
+      id: '57',
       localizationKey: 'account.ordertemplates.link',
       feature: 'orderTemplates',
       dataTestingId: 'order-templates-link',
     },
     '/account/orders': {
+      id: '59',
       localizationKey: 'account.order_history.link',
       notRole: ['APP_B2B_CXML_USER', 'APP_B2B_OCI_USER'],
     },
     '/account/wishlists': {
+      id: '60',
       localizationKey: 'account.wishlists.link',
       feature: 'wishlists',
       dataTestingId: 'wishlists-link',
       notRole: ['APP_B2B_CXML_USER', 'APP_B2B_OCI_USER'],
     },
     '/account/addresses': {
+      id: '62',
       localizationKey: 'account.saved_addresses.link',
       dataTestingId: 'addresses-link',
       notRole: ['APP_B2B_CXML_USER', 'APP_B2B_OCI_USER'],
     },
     '/account/payment': {
+      id: '64',
       localizationKey: 'account.payment.link',
       dataTestingId: 'payments-link',
       notRole: ['APP_B2B_CXML_USER', 'APP_B2B_OCI_USER'],
     },
-    '/account/profile': { localizationKey: 'account.profile.link', notRole: ['APP_B2B_CXML_USER', 'APP_B2B_OCI_USER'] },
+    '/account/profile': { 
+      id: '65', localizationKey: 'account.profile.link', notRole: ['APP_B2B_CXML_USER', 'APP_B2B_OCI_USER'] },
     '/account/organization/users': {
+      id: '67',
       localizationKey: 'account.organization.user_management',
-      permission: 'APP_B2B_MANAGE_USERS',
+      //permission: 'APP_B2B_MANAGE_USERS',
     },
     '/account/organization/cost-centers': {
+      id: '69',
       localizationKey: 'account.organization.cost_center_management',
       feature: 'costCenters',
       dataTestingId: 'cost-centers-link',
-      permission: 'APP_B2B_MANAGE_COSTCENTER',
+      //permission: 'APP_B2B_MANAGE_COSTCENTER',
     },
     '/account/punchout': {
+      id: '71',
       localizationKey: 'account.punchout.link',
       dataTestingId: 'punchout-link',
       feature: 'punchout',
-      permission: 'APP_B2B_MANAGE_PUNCHOUT',
+      //permission: 'APP_B2B_MANAGE_PUNCHOUT',
     },
     '/logout': {
+      id: '72',
       localizationKey: 'account.navigation.logout.link',
       notRole: ['APP_B2B_CXML_USER', 'APP_B2B_OCI_USER'],
     },
