@@ -8,12 +8,31 @@
 
 .microphone-text {
   position: fixed;
-  right: $space-default * 2;
-  bottom: $space-default * 6;
+  right: 15px;
+  bottom: 110px;
+  z-index: 100001;
+  width: 300px;
   max-width: 300px;
   height: auto;
-  padding: $space-default;
-  border: 1px solid $border-color-default;
+  padding: 40px 30px;
+  margin: 0 auto;
+  text-align: center;
+  background: #fff;
+  border: 5px solid #688dc3;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.3) 5px 5px 5px;
+
+  &::after {
+    position: absolute;
+    right: 30px;
+    bottom: -15px;
+    content: '';
+    border-color: transparent #688dc3 #688dc3 transparent;
+    border-style: solid;
+    border-width: 10px;
+    box-shadow: rgb(0 0 0 / 0.3) 5px 2px 5px;
+    transform: rotate(45deg);
+  }
 }
 
 .microphone-badge {
@@ -23,6 +42,7 @@
   font-size: 16px;
   background-color: $CORPORATE-PRIMARY;
   border: none;
+  box-shadow: rgb(0 0 0 / 0.3) 5px 2px 5px;
 
   &.pause {
     padding: 20px 23px;
@@ -30,17 +50,20 @@
 }
 
 .textarea {
-  width: 100%;
-  min-height: 40px;
-  overflow: hidden;
-  line-height: 20px;
+  display: block;
+  // overflow: hidden;
+  font-size: 30px;
+  line-height: 35px;
+  color: #8b8b8b;
   resize: both;
-}
 
-.textarea[contenteditable]:empty::before {
-  color: gray;
-  content: '""';
-  background: $white;
+  &[contenteditable]:empty::before {
+    font-size: 30px;
+    color: #999;
+    white-space: pre;
+    content: 'Try "Search for"...';
+    background: $white;
+  }
 }
 
 .icon-color {
@@ -52,7 +75,7 @@
 }
 
 .pulse:hover {
-  animation: none;
+  // animation: none;
 }
 
 @keyframes pulse {
