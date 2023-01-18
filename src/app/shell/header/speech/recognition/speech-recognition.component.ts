@@ -14,7 +14,7 @@ import { SpeechRecognizerService } from 'ish-shell/header/speech/service/speech-
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpeechRecognitionComponent implements OnInit {
-  grammar = '#JSGF V1.0; grammar colors; public <search> = search for;';
+  grammar = '#JSGF V1.0; grammar search; public <search-rule> = search for;';
 
   totalTranscript?: string;
 

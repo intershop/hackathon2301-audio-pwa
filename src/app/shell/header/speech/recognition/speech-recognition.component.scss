@@ -1,9 +1,12 @@
 @import 'variables';
 
-.microphone-badge {
+.microphone-fix {
   position: fixed;
   right: $space-default * 2;
   bottom: $space-default * 2;
+}
+
+.microphone-badge {
   z-index: 20000;
   padding: 20px 22px;
   font-size: 16px;
