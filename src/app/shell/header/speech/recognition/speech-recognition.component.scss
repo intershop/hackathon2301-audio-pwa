@@ -1,0 +1,16 @@
+@import 'variables';
+
+.microphone-batch {
+  background-color: #688dc3;
+}
+
+.icon-color {
+  color: #fff;
+}
+
+.back-to-top-btn {
+  position: fixed;
+  right: $space-default;
+  bottom: $space-default;
+  z-index: 20000;
+}

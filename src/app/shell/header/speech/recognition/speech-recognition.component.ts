@@ -2,14 +2,15 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable, Subject, merge } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
-import { SpeechError } from 'ish-shared/components/speech/model/speech-error.model';
-import { SpeechEvent } from 'ish-shared/components/speech/model/speech-event.model';
-import { SpeechNotification } from 'ish-shared/components/speech/model/speech-notification.model';
-import { SpeechRecognizerService } from 'ish-shared/components/speech/service/speech-recognition-service.component';
+import { SpeechError } from 'ish-shell/header/speech/model/speech-error.model';
+import { SpeechEvent } from 'ish-shell/header/speech/model/speech-event.model';
+import { SpeechNotification } from 'ish-shell/header/speech/model/speech-notification.model';
+import { SpeechRecognizerService } from 'ish-shell/header/speech/service/speech-recognition-service.component';
 
 @Component({
   selector: 'ish-speech-recognition',
   templateUrl: './speech-recognition.component.html',
+  styleUrls: ['./speech-recognition.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpeechRecognitionComponent implements OnInit {

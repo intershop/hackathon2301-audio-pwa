@@ -1,5 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Injector, NgModule } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { NgbCollapseModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
@@ -32,6 +42,7 @@ import { HeaderComponent } from './header/header/header.component';
 import { LanguageSwitchComponent } from './header/language-switch/language-switch.component';
 import { LoginStatusComponent } from './header/login-status/login-status.component';
 import { MiniBasketComponent } from './header/mini-basket/mini-basket.component';
+import { SpeechRecognitionComponent } from './header/speech/recognition/speech-recognition.component';
 import { SubCategoryNavigationComponent } from './header/sub-category-navigation/sub-category-navigation.component';
 import { UserInformationMobileComponent } from './header/user-information-mobile/user-information-mobile.component';
 import { LazyContentIncludeComponent } from './shared/lazy-content-include/lazy-content-include.component';
@@ -48,8 +59,10 @@ const exportedComponents = [CookiesBannerComponent, FooterComponent, HeaderCompo
     DirectivesModule,
     FeatureToggleModule,
     IconModule,
+    MatButtonModule,
     NgbCollapseModule,
     NgbDropdownModule,
+    MatCardModule,
     PipesModule,
     QuickorderExportsModule,
     RoleToggleModule,
@@ -60,6 +73,14 @@ const exportedComponents = [CookiesBannerComponent, FooterComponent, HeaderCompo
     TrackingExportsModule,
     TranslateModule,
     WishlistsExportsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatSelectModule,
+    MatListModule,
+    MatSidenavModule,
+    MatDialogModule,
   ],
   declarations: [
     ...exportedComponents,
@@ -76,6 +97,7 @@ const exportedComponents = [CookiesBannerComponent, FooterComponent, HeaderCompo
     LazySearchBoxComponent,
     LoginStatusComponent,
     MiniBasketComponent,
+    SpeechRecognitionComponent,
     SubCategoryNavigationComponent,
     UserInformationMobileComponent,
   ],

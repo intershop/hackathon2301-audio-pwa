@@ -1,9 +1,9 @@
 import { Injectable, NgZone } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { SpeechError } from 'ish-shared/components/speech/model/speech-error.model';
-import { SpeechEvent } from 'ish-shared/components/speech/model/speech-event.model';
-import { SpeechNotification } from 'ish-shared/components/speech/model/speech-notification.model';
+import { SpeechError } from 'ish-shell/header/speech/model/speech-error.model';
+import { SpeechEvent } from 'ish-shell/header/speech/model/speech-event.model';
+import { SpeechNotification } from 'ish-shell/header/speech/model/speech-notification.model';
 
 @Injectable({
   providedIn: 'root',

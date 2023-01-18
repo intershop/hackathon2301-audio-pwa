@@ -1,0 +1,13 @@
+<section>
+  <button mat-fab *ngIf="listening$ | async; else mic" (click)="stop()" class="microphone-batch back-to-top-btn">
+    <fa-icon icon="pause" class="icon-color" size="lg"></fa-icon>
+  </button>
+  <ng-template #mic>
+    <button mat-fab (click)="start()" class="microphone-batch back-to-top-btn">
+      <fa-icon icon="microphone" class="icon-color" size="lg"></fa-icon>
+    </button>
+  </ng-template>
+</section>
+<section *ngIf="transcript$ | async">
+  <mat-card>{{ transcript$ | async }}</mat-card>
+</section>
