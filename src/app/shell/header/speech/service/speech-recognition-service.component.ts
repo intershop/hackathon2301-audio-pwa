@@ -22,6 +22,7 @@ export class SpeechRecognizerService {
       this.recognition = new webkitSpeechRecognition();
       this.recognition.continuous = true;
       this.recognition.interimResults = true;
+      this.recognition.maxAlternatives = 3;
       this.setLanguage(language);
       this.grammarList = new webkitSpeechGrammarList();
       this.recognition.grammars = this.grammarList;
@@ -79,15 +80,30 @@ export class SpeechRecognizerService {
     });
   }
 
-  onResult(): Observable<SpeechNotification<string>> {
+  onResult(): Observable<SpeechNotification<string[]>> {
     return new Observable(observer => {
       this.recognition.onresult = (event: SpeechRecognitionEvent) => {
-        let interimContent = '';
-        let finalContent = '';
+        const interimContent = '';
+        let finalContent: string[] = [];
 
         for (let i = event.resultIndex; i < event.results.length; ++i) {
           if (event.results[i].isFinal) {
-            finalContent += event.results[i][0].transcript;
+            const content: string[] = [];
+
+            if (finalContent.length) {
+              finalContent.forEach(el => {
+                for (let j = 0; j < event.results[i].length; j++) {
+                  content.push(`${el}${event.results[i][j].transcript}`);
+                }
+              });
+            } else {
+              for (let j = 0; j < event.results[i].length; j++) {
+                content.push(event.results[i][j].transcript);
+              }
+            }
+
+            finalContent = content;
+
             this.ngZone.run(() => {
               observer.next({
                 event: SpeechEvent.FinalContent,
@@ -95,12 +111,16 @@ export class SpeechRecognizerService {
               });
             });
           } else {
-            interimContent += event.results[i][0].transcript;
+            const content: string[] = [];
+
+            for (let j = 0; j < event.results[i].length; j++) {
+              content.push(event.results[i][j].transcript);
+            }
             // console.log('interim transcript', event, interimContent);
             this.ngZone.run(() => {
               observer.next({
                 event: SpeechEvent.InterimContent,
-                content: interimContent,
+                content,
               });
             });
           }
