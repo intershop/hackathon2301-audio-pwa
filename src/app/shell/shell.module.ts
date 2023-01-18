@@ -1,15 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Injector, NgModule } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatListModule } from '@angular/material/list';
-import { MatSelectModule } from '@angular/material/select';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { NgbCollapseModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
@@ -59,10 +49,10 @@ const exportedComponents = [CookiesBannerComponent, FooterComponent, HeaderCompo
     DirectivesModule,
     FeatureToggleModule,
     IconModule,
-    MatButtonModule,
+
     NgbCollapseModule,
     NgbDropdownModule,
-    MatCardModule,
+
     PipesModule,
     QuickorderExportsModule,
     RoleToggleModule,
@@ -73,14 +63,6 @@ const exportedComponents = [CookiesBannerComponent, FooterComponent, HeaderCompo
     TrackingExportsModule,
     TranslateModule,
     WishlistsExportsModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatSelectModule,
-    MatListModule,
-    MatSidenavModule,
-    MatDialogModule,
   ],
   declarations: [
     ...exportedComponents,

@@ -66,7 +66,6 @@
     "@angular/core": "^14.2.12",
     "@angular/forms": "^14.2.12",
     "@angular/localize": "^14.2.12",
-    "@angular/material": "^14.2.7",
     "@angular/platform-browser": "^14.2.12",
     "@angular/platform-browser-dynamic": "^14.2.12",
     "@angular/platform-server": "^14.2.12",
