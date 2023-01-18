@@ -6,7 +6,18 @@
   bottom: $space-default * 2;
 }
 
+.microphone-text {
+  position: fixed;
+  right: $space-default * 2;
+  bottom: $space-default * 6;
+  max-width: 300px;
+  height: auto;
+  padding: $space-default;
+  border: 1px solid $border-color-default;
+}
+
 .microphone-badge {
+  position: relative;
   z-index: 20000;
   padding: 20px 22px;
   font-size: 16px;
@@ -16,6 +27,20 @@
   &.pause {
     padding: 20px 23px;
   }
+}
+
+.textarea {
+  width: 100%;
+  min-height: 40px;
+  overflow: hidden;
+  line-height: 20px;
+  resize: both;
+}
+
+.textarea[contenteditable]:empty::before {
+  color: gray;
+  content: '""';
+  background: $white;
 }
 
 .icon-color {
