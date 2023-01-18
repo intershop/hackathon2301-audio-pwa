@@ -4,6 +4,11 @@
   margin-bottom: 30px;
   clear: both;
 
+  ::ng-deep .modal & {
+    padding: 0 !important;
+    margin-left: 0 !important; // no left spacing in dialog
+  }
+
   .velocity {
     position: relative;
 
@@ -44,6 +49,20 @@
       background: url('/assets/img/music-solid.svg') 0 0 no-repeat;
     }
 
+    .check {
+      position: absolute;
+      top: 10px;
+      left: 50px;
+      z-index: 3;
+      display: none;
+      width: 160px;
+      height: 160px;
+
+      svg {
+        fill: #fff;
+      }
+    }
+
     #note54 {
       position: absolute;
       top: 0;
@@ -63,17 +82,32 @@
     }
 
     .success {
-      background: #5cb85c;
+      background-color: #5cb85c;
       animation: fadeinout 1s linear forwards;
     }
 
+    .success-check {
+      color: #fff;
+      background-color: #5cb85c;
+      background-position: 30px 0;
+      fill: #fff;
+
+      & ~ .note {
+        display: none;
+      }
+
+      & ~ .check {
+        display: block;
+      }
+    }
+
     .success-medium {
-      background: #8b8b8b;
+      background-color: #8b8b8b;
       animation: fadeinout 0.5s linear forwards;
     }
 
     .error {
-      background: #ea1919;
+      background-color: #ea1919;
       animation: fadeinout 0.5s linear forwards;
     }
   }

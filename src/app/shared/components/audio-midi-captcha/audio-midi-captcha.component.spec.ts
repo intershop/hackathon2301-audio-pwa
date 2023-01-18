@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AudioMidiCaptchaComponent } from './audio-midi-captcha.component';
 
-describe('AudioMidiCaptchaComponent', () => {
+describe('Audio Midi Captcha Component', () => {
   let component: AudioMidiCaptchaComponent;
   let fixture: ComponentFixture<AudioMidiCaptchaComponent>;
   let element: HTMLElement;

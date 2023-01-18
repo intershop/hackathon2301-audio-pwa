@@ -8,6 +8,9 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 })
 export class AudioMidiCaptchaComponent implements OnInit {
   ngOnInit() {
+    // const loginButton = document.getElementById('login-button') as HTMLDivElement | null;
+    // loginButton?.setAttribute('disabled', '');
+
     if (navigator.requestMIDIAccess) {
       console.log('This browser supports WebMIDI!');
     } else {
@@ -59,6 +62,7 @@ export class AudioMidiCaptchaComponent implements OnInit {
             if (document.getElementById(`note${note}`) !== null) {
               const box = document.getElementById(`note${note}`) as HTMLDivElement | null;
               addClass('success', box);
+              addClass('success-check', box);
             } else {
               const boxWrong = document.getElementById(`note-wrong`) as HTMLDivElement | null;
               addClass('error', boxWrong);
