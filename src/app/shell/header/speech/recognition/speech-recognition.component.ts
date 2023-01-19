@@ -14,7 +14,7 @@ import { SpeechRecognizerService } from 'ish-shell/header/speech/service/speech-
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpeechRecognitionComponent implements OnInit {
-  searchTrigger = ['search for product', 'search for a', 'search for'];
+  searchTrigger = ['search for product ', 'search for a ', 'search for'];
   grammar = '#JSGF V1.0; grammar search; public <search-rule> = search for;';
 
   transcript$?: Observable<string>;
@@ -51,7 +51,7 @@ export class SpeechRecognitionComponent implements OnInit {
       tap(notification => {
         this.processNotification(notification);
       }),
-      map(notification => notification.content[0] || '')
+      map(notification => notification.content || '')
     );
 
     this.listening$ = merge(this.speechRecognizer.onStart(), this.speechRecognizer.onEnd()).pipe(
@@ -59,18 +59,14 @@ export class SpeechRecognitionComponent implements OnInit {
     );
   }
 
-  private processNotification(notification: SpeechNotification<string[]>): void {
+  private processNotification(notification: SpeechNotification<string>): void {
     if (notification.event === SpeechEvent.FinalContent) {
-      const match = notification.content
-        .map(message => {
-          const formatMessage = message.toLowerCase();
-          const trigger = this.searchTrigger.find(trigger => formatMessage.startsWith(trigger));
-          return trigger ? formatMessage.replace(trigger, '').trim() : undefined;
-        })
-        .find(el => !!el);
+      const formatMessage = notification.content.toLowerCase();
+      const trigger = this.searchTrigger.find(trigger => formatMessage.startsWith(trigger));
 
-      if (match) {
-        this.route.navigateByUrl(`/search/${match}`);
+      if (trigger) {
+        const keyword = formatMessage.replace(trigger, '').trim();
+        this.route.navigateByUrl(`/search/${keyword}`);
         this.stop();
       }
     }
