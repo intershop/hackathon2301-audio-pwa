@@ -13,12 +13,18 @@ import { whenTruthy } from 'ish-core/utils/operators';
 export class AudioTextToSpeechComponent implements OnInit {
   constructor(private accountFacade: AccountFacade) {}
 
+  static alreadySaid: string = 'dorina';
+
   ngOnInit() {
     this.accountFacade.user$.pipe(whenTruthy(), take(1)).subscribe(user => {
       const utterance = new SpeechSynthesisUtterance(
         `Hello! It's nice to see you again - ${user.firstName} ${user.lastName} !!!`
       );
-      speechSynthesis.speak(utterance);
+      if (AudioTextToSpeechComponent.alreadySaid !== user.firstName)
+      {
+        speechSynthesis.speak(utterance);
+        AudioTextToSpeechComponent.alreadySaid = user.firstName;
+      }
     });
   }
 
