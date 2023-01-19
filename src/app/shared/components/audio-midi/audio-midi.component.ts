@@ -6,16 +6,17 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 })
 export class AudioMidiComponent implements OnInit {
 
-  interval: any;
-  
+  static interval: any;
+  static lastSaid: string = 'My Account';
 
   ngOnDestroy()
   {
-    clearInterval(this.interval);
+    clearInterval(AudioMidiComponent.interval);
   }
+
   ngOnInit() {
+    //this.interval = window.setInterval(()=>checkForButtonInterval() , 100);
     var myMap = new Map<string, number>();
-    var lastSaid = 'My Account';
     if (navigator.requestMIDIAccess) {
       console.log('This browser supports WebMIDI!');
     } else {
@@ -50,12 +51,13 @@ export class AudioMidiComponent implements OnInit {
           //console.log(note+myMap.size);
           const box = document.getElementById(note) as HTMLDivElement | null;
           box?.setAttribute('style', 'background: #d5d5d5'); // none repeat scroll 0 0);
+          //myMap.set(note, Date.now());
           if (myMap.get(note) === undefined)
           {
             myMap.set(note, Date.now());
             if (myMap.size == 1)
             {
-              this.interval = window.setInterval(()=>checkForButtonInterval() , 100);
+              AudioMidiComponent.interval = window.setInterval(()=>checkForButtonInterval() , 100);
             }
           }
           break;
@@ -68,30 +70,34 @@ export class AudioMidiComponent implements OnInit {
           myMap.delete(note);
           if (myMap.size == 0)
           {
-            clearInterval(this.interval);
+            clearInterval(AudioMidiComponent.interval);
           }
           break;
         }
       }
       //---------MY ACCOUNT ----------------
-      function checkForButtonInterval()
+      
+    }
+
+    function checkForButtonInterval()
       {
         if (myMap.size === 1) 
         {
+          //console.log('drin')
           myMap.forEach((time: number, note: string) => {
             const box = document.getElementById(note) as HTMLDivElement | null;
             if (Date.now()-time > 500 && Date.now()-time < 580)
             {
               const sayNow = box?.firstChild.textContent;
-              console.log(sayNow);
-              if (sayNow !== lastSaid)
+              console.log(sayNow + ' ' + AudioMidiComponent.lastSaid);
+              if (sayNow != AudioMidiComponent.lastSaid && sayNow != 'Logout')
               {
                 speechSynthesis.speak(new SpeechSynthesisUtterance(sayNow));
-                lastSaid=sayNow;
+                AudioMidiComponent.lastSaid=sayNow;
               }
-              else{
+              /*else{
                 console.log('gleich');
-              }
+              }*/
             }
             else if (Date.now()-time > 2000)
             {
@@ -101,6 +107,5 @@ export class AudioMidiComponent implements OnInit {
           });
         }
       }
-    }
   }
 }
