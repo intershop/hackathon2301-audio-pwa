@@ -17,7 +17,7 @@ export class AudioTextToSpeechComponent implements OnInit {
       const utterance = new SpeechSynthesisUtterance(
         `It's nice to see you again - ${user.firstName} ${user.lastName} !!!`
       );
-      //speechSynthesis.speak(utterance);
+      speechSynthesis.speak(utterance);
     });
   }
 }
