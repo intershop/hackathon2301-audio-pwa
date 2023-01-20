@@ -1,4 +1,4 @@
-# Integration Audio using the Web API for Speech, MIDI and Audio
+# Integrate Audio using the Web API for Speech, MIDI and Audio
 
 The overall goal was to improve the user experience, accessibility and interaction using audio features and to have more fun by combining music input with visual feedback.
 
