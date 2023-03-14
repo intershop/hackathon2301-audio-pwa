@@ -28,8 +28,10 @@ import {
   faList,
   faListAlt,
   faMapMarkerAlt,
+  faMicrophone,
   faMinus,
   faPaperPlane,
+  faPause,
   faPencilAlt,
   faPhone,
   faPlayCircle,
@@ -103,7 +105,9 @@ export class IconModule {
       faFastForward,
       faMapMarkerAlt,
       faEnvelope,
-      faFax
+      faFax,
+      faMicrophone,
+      faPause
     );
   }
 }

@@ -32,13 +32,14 @@ import { HeaderComponent } from './header/header/header.component';
 import { LanguageSwitchComponent } from './header/language-switch/language-switch.component';
 import { LoginStatusComponent } from './header/login-status/login-status.component';
 import { MiniBasketComponent } from './header/mini-basket/mini-basket.component';
+import { SpeechRecognitionComponent } from './header/speech-recognition/speech-recognition.component';
 import { SubCategoryNavigationComponent } from './header/sub-category-navigation/sub-category-navigation.component';
 import { UserInformationMobileComponent } from './header/user-information-mobile/user-information-mobile.component';
 import { LazyContentIncludeComponent } from './shared/lazy-content-include/lazy-content-include.component';
 import { LazyMiniBasketContentComponent } from './shared/lazy-mini-basket-content/lazy-mini-basket-content.component';
 import { LazySearchBoxComponent } from './shared/lazy-search-box/lazy-search-box.component';
 
-const exportedComponents = [CookiesBannerComponent, FooterComponent, HeaderComponent];
+const exportedComponents = [CookiesBannerComponent, FooterComponent, HeaderComponent, SpeechRecognitionComponent];
 
 @NgModule({
   imports: [
