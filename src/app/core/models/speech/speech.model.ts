@@ -17,3 +17,8 @@ export interface SpeechNotification<T> {
   error?: SpeechError;
   content?: T;
 }
+
+export interface SpeechRecognizerConfiguration {
+  isTriggered(transcript: string): boolean;
+  processor(recognition: string): void;
+}

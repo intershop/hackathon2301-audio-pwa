@@ -1,10 +1,13 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component, Inject, InjectionToken, OnInit } from '@angular/core';
 import { Observable, merge } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
-import { SpeechEvent, SpeechNotification } from 'ish-core/models/speech/speech.model';
+import { SpeechEvent, SpeechNotification, SpeechRecognizerConfiguration } from 'ish-core/models/speech/speech.model';
 import { SpeechRecognizerService } from 'ish-core/utils/speech-recognizer/speech-recognizer.service';
+
+export const SPEECH_RECOGNIZER_CONFIGURATION = new InjectionToken<SpeechRecognizerConfiguration>(
+  'Speech Recognizer Configuration'
+);
 
 @Component({
   selector: 'ish-speech-recognition',
@@ -19,7 +22,10 @@ export class SpeechRecognitionComponent implements OnInit {
   transcript$?: Observable<string>;
   listening$?: Observable<boolean>;
 
-  constructor(private speechRecognizer: SpeechRecognizerService, private route: Router) {}
+  constructor(
+    private speechRecognizer: SpeechRecognizerService,
+    @Inject(SPEECH_RECOGNIZER_CONFIGURATION) private speechRecognizerConfiguration: SpeechRecognizerConfiguration[]
+  ) {}
 
   ngOnInit() {
     const webSpeechReady = this.speechRecognizer.initialize('en-US');
@@ -60,12 +66,12 @@ export class SpeechRecognitionComponent implements OnInit {
 
   private processNotification(notification: SpeechNotification<string>): void {
     if (notification.event === SpeechEvent.FinalContent) {
-      const formatMessage = notification.content.toLowerCase();
-      const trigger = this.searchTrigger.find(trigger => formatMessage.startsWith(trigger));
+      const recognizer = this.speechRecognizerConfiguration.find(recognizer =>
+        recognizer.isTriggered(notification.content)
+      );
 
-      if (trigger) {
-        const keyword = formatMessage.replace(trigger, '').trim();
-        this.route.navigateByUrl(`/search/${keyword}`);
+      if (recognizer) {
+        recognizer.processor(notification.content);
         this.stop();
       }
     }

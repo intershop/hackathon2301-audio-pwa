@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Injector, NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Injector, NgModule, inject } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { NgbCollapseModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -32,7 +32,10 @@ import { HeaderComponent } from './header/header/header.component';
 import { LanguageSwitchComponent } from './header/language-switch/language-switch.component';
 import { LoginStatusComponent } from './header/login-status/login-status.component';
 import { MiniBasketComponent } from './header/mini-basket/mini-basket.component';
-import { SpeechRecognitionComponent } from './header/speech-recognition/speech-recognition.component';
+import {
+  SPEECH_RECOGNIZER_CONFIGURATION,
+  SpeechRecognitionComponent,
+} from './header/speech-recognition/speech-recognition.component';
 import { SubCategoryNavigationComponent } from './header/sub-category-navigation/sub-category-navigation.component';
 import { UserInformationMobileComponent } from './header/user-information-mobile/user-information-mobile.component';
 import { LazyContentIncludeComponent } from './shared/lazy-content-include/lazy-content-include.component';
@@ -81,6 +84,22 @@ const exportedComponents = [CookiesBannerComponent, FooterComponent, HeaderCompo
     UserInformationMobileComponent,
   ],
   exports: [...exportedComponents],
+  providers: [
+    {
+      provide: SPEECH_RECOGNIZER_CONFIGURATION,
+      multi: true,
+      useFactory: () => {
+        const route = inject(Router);
+        return {
+          isTriggered: (transcript: string) => transcript?.toLowerCase().startsWith('search for'),
+          processor: (recognition: string) => {
+            const searchTerm = recognition.toLowerCase().replace('search for', '').trim();
+            route.navigateByUrl(`/search/${searchTerm}`);
+          },
+        };
+      },
+    },
+  ],
 })
 export class ShellModule {
   constructor(moduleLoader: ModuleLoaderService, injector: Injector) {
