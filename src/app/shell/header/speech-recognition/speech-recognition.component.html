@@ -1,14 +1,19 @@
-<section class="microphone-fix">
-  <div *ngIf="listening$ | async; else mic">
+<section
+  class="microphone-fix"
+  (isListening)="onListening($event)"
+  (transcriptChange)="onTranscriptChange($event)"
+  ishSpeechRecognition
+>
+  <div *ngIf="listening; else mic">
     <p class="microphone-text">
-      <span class="textarea" role="textbox" contenteditable>{{ transcript$ | async }}</span>
+      <span class="textarea" role="textbox" contenteditable>{{ transcript }}</span>
     </p>
-    <button (click)="stop()" class="microphone-badge pause badge badge-pill badge-primary pulse">
+    <button class="microphone-badge pause badge badge-pill badge-primary pulse" id="stopSpeech">
       <fa-icon icon="pause" class="icon-color" size="lg"></fa-icon>
     </button>
   </div>
   <ng-template #mic>
-    <button (click)="start()" class="microphone-badge badge badge-pill badge-primary">
+    <button class="microphone-badge badge badge-pill badge-primary" id="startSpeech">
       <fa-icon icon="microphone" class="icon-color" size="lg"></fa-icon>
     </button>
   </ng-template>
