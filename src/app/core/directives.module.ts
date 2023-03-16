@@ -8,6 +8,7 @@ import { ProductContextAccessDirective } from './directives/product-context-acce
 import { ProductContextDirective } from './directives/product-context.directive';
 import { ScrollDirective } from './directives/scroll.directive';
 import { ServerHtmlDirective } from './directives/server-html.directive';
+import { SpeechRecognitionAccessDirective } from './directives/speech-recognition-access.directive';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ServerHtmlDirective } from './directives/server-html.directive';
     ProductContextDirective,
     ScrollDirective,
     ServerHtmlDirective,
+    SpeechRecognitionAccessDirective,
   ],
   exports: [
     ClickOutsideDirective,
@@ -29,6 +31,7 @@ import { ServerHtmlDirective } from './directives/server-html.directive';
     ProductContextDirective,
     ScrollDirective,
     ServerHtmlDirective,
+    SpeechRecognitionAccessDirective,
   ],
 })
 export class DirectivesModule {}

@@ -3,6 +3,9 @@ import { Observable } from 'rxjs';
 
 import { SpeechError, SpeechEvent, SpeechNotification } from 'ish-core/models/speech/speech.model';
 
+export const SPEECH_RECOGNITION_COMPATIBLE: boolean =
+  !SSR && 'webkitSpeechRecognition' in window && 'webkitSpeechGrammarList' in window;
+
 @Injectable({
   providedIn: 'root',
 })
@@ -16,7 +19,7 @@ export class SpeechRecognizerService {
   constructor(private ngZone: NgZone) {}
 
   initialize(language: string): boolean {
-    if (!SSR && 'webkitSpeechRecognition' in window && 'webkitSpeechGrammarList' in window) {
+    if (SPEECH_RECOGNITION_COMPATIBLE) {
       this.recognition = new webkitSpeechRecognition();
       this.recognition.continuous = true;
       this.recognition.interimResults = true;
