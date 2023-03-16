@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { SharedModule } from 'ish-shared/shared.module';
+import { ShellModule } from 'ish-shell/shell.module';
 
 import { ProductBrandComponent } from './product-brand/product-brand.component';
 import { ProductBundlePartsComponent } from './product-bundle-parts/product-bundle-parts.component';
@@ -17,6 +18,7 @@ import { ProductLinksComponent } from './product-links/product-links.component';
 import { ProductMasterLinkComponent } from './product-master-link/product-master-link.component';
 import { ProductMasterVariationsComponent } from './product-master-variations/product-master-variations.component';
 import { ProductPageComponent } from './product-page.component';
+import { ProductSpeachToActionComponent } from './product-speach-to-action/product-speach-to-action.component';
 import { RetailSetPartsComponent } from './retail-set-parts/retail-set-parts.component';
 
 const productPageRoutes: Routes = [
@@ -34,7 +36,7 @@ const productPageRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [NgbNavModule, RouterModule.forChild(productPageRoutes), SharedModule],
+  imports: [NgbNavModule, RouterModule.forChild(productPageRoutes), SharedModule, ShellModule],
   declarations: [
     ProductBrandComponent,
     ProductBundlePartsComponent,
@@ -49,6 +51,7 @@ const productPageRoutes: Routes = [
     ProductMasterLinkComponent,
     ProductMasterVariationsComponent,
     ProductPageComponent,
+    ProductSpeachToActionComponent,
     RetailSetPartsComponent,
   ],
 })

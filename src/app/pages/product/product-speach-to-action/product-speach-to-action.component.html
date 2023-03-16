@@ -1,0 +1,13 @@
+<div (isListening)="onListening($event)" (transcriptChange)="onTranscriptChange($event)" ishSpeechRecognition>
+  <div *ngIf="listening; else mic">
+    <button id="stopSpeech">
+      <fa-icon icon="pause" class="icon-color" size="lg"></fa-icon>
+    </button>
+  </div>
+  <ng-template #mic>
+    <button id="startSpeech">
+      <fa-icon icon="microphone"></fa-icon>
+      <span class="share-label">Speach to Action</span>
+    </button>
+  </ng-template>
+</div>
